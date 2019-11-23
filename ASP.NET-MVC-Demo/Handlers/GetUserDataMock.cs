@@ -11,10 +11,20 @@ namespace ASP.NET_MVC_Demo.Handlers
     {
         public async Task<UserData> GetUserData(string username)
         {
+            if (string.IsNullOrEmpty(username))
+            {
+                return null;
+            }
+
+
             UserData user = new UserData();
             user.Login = "MOCK";
-
             return user;
+        }
+
+        public Task<IEnumerable<UserRepo>> GetUserRepos(string username)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -10,5 +10,6 @@ namespace ASP.NET_MVC_Demo.Handlers
     public interface IGetUserData
     {
         Task<UserData> GetUserData(string username);
+        Task<IEnumerable<UserRepo>> GetUserRepos(string username);
     }
 }

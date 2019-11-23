@@ -8,8 +8,8 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
             <div class="navbar-header">
                 @Html.ActionLink("Github Find Popular Repos By User", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
@@ -19,7 +19,18 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Matt Hurst</p>
+            <div class="row">
+                <div class="col-lg-2">
+                    &copy; @DateTime.Now.Year - Matt Hurst
+                </div>
+                <div class="col-lg-8">
+
+                </div>
+                <div class="col-lg-2">
+                    matthew@mshurst.co.uk
+                </div>
+            </div>
+            
         </footer>
     </div>
 

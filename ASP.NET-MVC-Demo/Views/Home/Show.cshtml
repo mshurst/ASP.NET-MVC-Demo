@@ -1,7 +1,14 @@
-﻿
-@{
-    ViewBag.Title = "Show";
+﻿@model ASP.NET_MVC_Demo.Models.CombinedUserData
+
+<h1 class="text-center">User Details</h1>
+<p>Username : @Model.UserData.Login</p>
+<p>Location : @Model.UserData.Location</p>
+<img src="@Model.UserData.Avatar_Url" class="githubavatar img-thumbnail" />
+<p>Number of Repositories <span class="badge ">@Model.UserData.Public_Repos</span></p>
+
+@foreach (var repo in Model.UserRepos)
+{
+    <p>Repository : @repo.Name - Number of Stargazers <span class="badge">@repo.Stargazers_Count</span></p>
 }
 
-<h2>Show</h2>
-
+@Html.ActionLink("Back", "Index", "Home")

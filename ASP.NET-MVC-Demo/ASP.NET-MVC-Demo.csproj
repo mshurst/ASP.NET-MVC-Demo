@@ -146,7 +146,9 @@
     <Compile Include="Handlers\GetUserDataGithub.cs" />
     <Compile Include="Handlers\GetUserDataMock.cs" />
     <Compile Include="Handlers\IGetUserData.cs" />
+    <Compile Include="Models\CombinedUserData.cs" />
     <Compile Include="Models\UserData.cs" />
+    <Compile Include="Models\UserRepo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

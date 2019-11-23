@@ -28,7 +28,22 @@ namespace ASP.NET_MVC_Demo.Controllers
         [HttpPost]
         public async Task<ActionResult> Show(UserData user)
         {
-            return View();
+            var githubUser = await getUserDataHandler.GetUserData(user.Login);
+
+            var repos = await getUserDataHandler.GetUserRepos(user.Login);
+
+            var topReposByStargazerCount = 
+                (from repo in repos
+                orderby repo.Stargazers_Count descending 
+                select repo).Take(5);
+
+            var combinedUserData = new CombinedUserData
+            {
+                UserData = githubUser,
+                UserRepos = topReposByStargazerCount
+            };
+
+            return View(combinedUserData);
         }
 
 
