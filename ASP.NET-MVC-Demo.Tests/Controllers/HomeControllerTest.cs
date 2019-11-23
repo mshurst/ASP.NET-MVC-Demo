@@ -31,13 +31,25 @@ namespace ASP.NET_MVC_Demo.Tests.Controllers
         public async Task Show()
         {
             var getUserData = new GetUserDataMock();
-            HomeController controller = new HomeController(new GetUserDataMock());
+            HomeController controller = new HomeController(getUserData);
 
             var user = await getUserData.GetUserData("test");
 
             var result = controller.Show(user);
 
             Assert.IsNotNull(result);
+        }
+
+        [TestMethod]
+        public async Task Show_NullUsernameReturnsNull()
+        {
+            var getUserData = new GetUserDataMock();
+
+            HomeController controller = new HomeController(getUserData);
+
+            var user = await getUserData.GetUserData("");
+
+            Assert.IsNull(user);
         }
     }
 }
