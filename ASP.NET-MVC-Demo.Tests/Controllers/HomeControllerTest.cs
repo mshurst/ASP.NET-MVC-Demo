@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ASP.NET_MVC_Demo;
@@ -20,9 +21,22 @@ namespace ASP.NET_MVC_Demo.Tests.Controllers
             HomeController controller = new HomeController(new GetUserDataMock());
 
             // Act
-            ViewResult result = controller.Index() as ViewResult;
+            var result = controller.Index();
 
             // Assert
+            Assert.IsNotNull(result);
+        }
+
+        [TestMethod]
+        public async Task Show()
+        {
+            var getUserData = new GetUserDataMock();
+            HomeController controller = new HomeController(new GetUserDataMock());
+
+            var user = await getUserData.GetUserData("test");
+
+            var result = controller.Show(user);
+
             Assert.IsNotNull(result);
         }
     }
