@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -7,6 +8,7 @@ namespace ASP.NET_MVC_Demo.Models
 {
     public class UserData
     {
+        [Required]
         public string Login { get; set; }
         public int Id { get; set; }
         public string Node_Id { get; set; }

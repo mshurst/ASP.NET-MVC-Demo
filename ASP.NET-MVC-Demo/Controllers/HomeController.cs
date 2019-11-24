@@ -28,6 +28,11 @@ namespace ASP.NET_MVC_Demo.Controllers
         [HttpPost]
         public async Task<ActionResult> Show(UserData user)
         {
+            if (!ModelState.IsValid)
+            {
+                return RedirectToRoute("Index");
+            }
+
             var githubUser = await getUserDataHandler.GetUserData(user.Login);
 
             var repos = await getUserDataHandler.GetUserRepos(user.Login);
