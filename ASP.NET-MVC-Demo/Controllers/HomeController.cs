@@ -5,6 +5,7 @@ using System.Security.Cryptography;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using ASP.NET_MVC_Demo.ErrorHandling;
 using ASP.NET_MVC_Demo.Handlers;
 using ASP.NET_MVC_Demo.Models;
 
@@ -33,24 +34,18 @@ namespace ASP.NET_MVC_Demo.Controllers
                 return RedirectToRoute("Index");
             }
 
-            var githubUser = await getUserDataHandler.GetUserData(user.UserData.Login);
-
-            var repos = await getUserDataHandler.GetUserRepos(user.UserData.Login);
-
-            var topReposByStargazerCount = 
-                (from repo in repos
-                orderby repo.Stargazers_Count descending 
-                select repo).Take(5);
-
-            var combinedUserData = new CombinedUserData
+            try
             {
-                UserData = githubUser,
-                UserRepos = topReposByStargazerCount
-            };
+                var combinedUserData = await getUserDataHandler.GetTopReposByUser(user.UserData.Login, 5);
 
-            return View(combinedUserData);
+                return View(combinedUserData);
+            }
+            catch (UserNotFoundException ex)
+            {
+                ViewBag.Error = "User Not Found";
+
+                return View();
+            }
         }
-
-
     }
 }
