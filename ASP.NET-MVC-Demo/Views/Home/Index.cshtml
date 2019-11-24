@@ -1,6 +1,12 @@
 ﻿@model ASP.NET_MVC_Demo.Models.CombinedUserData
 
 <h1 class="text-center">Search for a Github user</h1>
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @ViewBag.Error
+    </div>
+}
 <div class="jumbotron">
     @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { @class = "form-horizontal" }))
     {
