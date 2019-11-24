@@ -143,7 +143,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Handlers\UserRepositoryGIthubService.cs" />
+    <Compile Include="Handlers\UserRepositoryGithubService.cs" />
     <Compile Include="Handlers\IUserRepositoryService.cs" />
     <Compile Include="Models\CombinedUserData.cs" />
     <Compile Include="Models\UserData.cs" />

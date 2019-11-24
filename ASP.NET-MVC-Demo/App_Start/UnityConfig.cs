@@ -16,7 +16,7 @@ namespace ASP.NET_MVC_Demo
             
             // e.g. container.RegisterType<ITestService, TestService>();
 
-            container.RegisterType<IUserRepositoryService, UserRepositoryGIthubService>();
+            container.RegisterType<IUserRepositoryService, UserRepositoryGithubService>();
             
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
         }
