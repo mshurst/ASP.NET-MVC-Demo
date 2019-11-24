@@ -143,9 +143,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Handlers\GetUserDataGithub.cs" />
-    <Compile Include="Handlers\GetUserDataMock.cs" />
-    <Compile Include="Handlers\IGetUserData.cs" />
+    <Compile Include="Handlers\UserRepositoryGIthubService.cs" />
+    <Compile Include="Handlers\IUserRepositoryService.cs" />
     <Compile Include="Models\CombinedUserData.cs" />
     <Compile Include="Models\UserData.cs" />
     <Compile Include="Models\UserRepo.cs" />

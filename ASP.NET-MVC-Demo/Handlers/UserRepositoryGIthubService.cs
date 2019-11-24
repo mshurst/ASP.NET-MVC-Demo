@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 
 namespace ASP.NET_MVC_Demo.Handlers
 {
-    public class GetUserDataGithub : IGetUserData
+    public class UserRepositoryGIthubService : IUserRepositoryService
     {
         private static string url = @"https://api.github.com/users/";
 

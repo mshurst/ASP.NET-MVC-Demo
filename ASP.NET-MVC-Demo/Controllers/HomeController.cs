@@ -12,9 +12,9 @@ namespace ASP.NET_MVC_Demo.Controllers
 {
     public class HomeController : Controller
     {
-        private IGetUserData getUserDataHandler;
+        private IUserRepositoryService getUserDataHandler;
 
-        public HomeController(IGetUserData userDataHandler)
+        public HomeController(IUserRepositoryService userDataHandler)
         {
             getUserDataHandler = userDataHandler;
         }
