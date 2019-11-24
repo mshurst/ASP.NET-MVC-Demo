@@ -17,7 +17,7 @@ namespace ASP.NET_MVC_Demo.Tests.Controllers
     public class HomeControllerTest
     {
         [Test]
-        public void Index()
+        public void Index_Always_ViewReturns()
         {
             // Arrange
             HomeController controller = new HomeController(new GetUserDataMock());
@@ -30,7 +30,7 @@ namespace ASP.NET_MVC_Demo.Tests.Controllers
         }
 
         [Test]
-        public async Task Show()
+        public async Task Show_Always_ViewReturns()
         {
             var getUserData = new GetUserDataMock();
             HomeController controller = new HomeController(getUserData);
@@ -43,7 +43,7 @@ namespace ASP.NET_MVC_Demo.Tests.Controllers
         }
 
         [Test]
-        public async Task Show_NullUsernameReturnsNull()
+        public async Task Show_NullUsername_ReturnsNull()
         {
             var getUserData = new GetUserDataMock();
 
