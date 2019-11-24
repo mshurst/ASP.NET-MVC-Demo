@@ -11,5 +11,6 @@ namespace ASP.NET_MVC_Demo.Handlers
     {
         Task<UserData> GetUserData(string username);
         Task<IEnumerable<UserRepo>> GetUserRepos(string username);
+        Task<CombinedUserData> GetTopReposByUser(string username, int reposCount);
     }
 }
