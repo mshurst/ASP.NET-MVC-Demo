@@ -1,20 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ASP.NET_MVC_Demo;
 using ASP.NET_MVC_Demo.Controllers;
 using ASP.NET_MVC_Demo.Handlers;
+using NUnit.Framework;
+using Assert = NUnit.Framework.Assert;
 
 namespace ASP.NET_MVC_Demo.Tests.Controllers
 {
-    [TestClass]
+    [TestFixture]
     public class HomeControllerTest
     {
-        [TestMethod]
+        [Test]
         public void Index()
         {
             // Arrange
@@ -24,10 +26,10 @@ namespace ASP.NET_MVC_Demo.Tests.Controllers
             var result = controller.Index();
 
             // Assert
-            Assert.IsNotNull(result);
+            Assert.That(result, Is.Not.Null);
         }
 
-        [TestMethod]
+        [Test]
         public async Task Show()
         {
             var getUserData = new GetUserDataMock();
@@ -37,10 +39,10 @@ namespace ASP.NET_MVC_Demo.Tests.Controllers
 
             var result = controller.Show(user);
 
-            Assert.IsNotNull(result);
+            Assert.That(true, Is.True);
         }
 
-        [TestMethod]
+        [Test]
         public async Task Show_NullUsernameReturnsNull()
         {
             var getUserData = new GetUserDataMock();
@@ -49,7 +51,7 @@ namespace ASP.NET_MVC_Demo.Tests.Controllers
 
             var user = await getUserData.GetUserData("");
 
-            Assert.IsNull(user);
+            Assert.That(user, Is.Null);
         }
     }
 }
