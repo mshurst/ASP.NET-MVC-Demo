@@ -26,16 +26,16 @@ namespace ASP.NET_MVC_Demo.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Show(UserData user)
+        public async Task<ActionResult> Index(CombinedUserData user)
         {
             if (!ModelState.IsValid)
             {
                 return RedirectToRoute("Index");
             }
 
-            var githubUser = await getUserDataHandler.GetUserData(user.Login);
+            var githubUser = await getUserDataHandler.GetUserData(user.UserData.Login);
 
-            var repos = await getUserDataHandler.GetUserRepos(user.Login);
+            var repos = await getUserDataHandler.GetUserRepos(user.UserData.Login);
 
             var topReposByStargazerCount = 
                 (from repo in repos
