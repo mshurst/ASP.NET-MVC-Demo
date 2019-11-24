@@ -1,18 +1,20 @@
-﻿@{
-    ViewBag.Title = "Home Page";
-}
-
-@model ASP.NET_MVC_Demo.Models.UserData
+﻿@model ASP.NET_MVC_Demo.Models.CombinedUserData
 
 <h1 class="text-center">Search for a Github user</h1>
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @ViewBag.Error
+    </div>
+}
 <div class="jumbotron">
-    @using (Html.BeginForm("Show", "Home", FormMethod.Post, new {@class = "form-horizontal"}))
+    @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { @class = "form-horizontal" }))
     {
         <div class="form-group">
-            @Html.Label("txtName", "Username", new { @class = "col-lg-2 control-label"})
+            @Html.Label("txtName", "Username", new { @class = "col-lg-2 control-label" })
             <div class="col-lg-10">
-                @Html.TextBoxFor(m => m.Login, new { @class = "form-control", id = "txtName", placeholder = "Enter Github Username to Search Here" })
-                @Html.ValidationMessageFor(m => m.Login, "", new { @class = "text-danger" })
+                @Html.TextBoxFor(m => m.UserData.Login, new { @class = "form-control", id = "txtName", placeholder = "Enter Github Username to Search Here" })
+                @Html.ValidationMessageFor(m => m.UserData.Login, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="form-group">
@@ -22,3 +24,19 @@
         </div>
     }
 </div>
+
+@if (Model != null)
+{
+    <div class="jumbotron">
+        <h2 class="text-center">User Details</h2>
+        <p>Username : @Model.UserData.Login</p>
+        <p>Location : @Model.UserData.Location</p>
+        <img src="@Model.UserData.Avatar_Url" class="githubavatar img-thumbnail"/>
+        <p>Number of Repositories <span class="badge ">@Model.UserData.Public_Repos</span></p>
+
+        @foreach (var repo in Model.UserRepos)
+        {
+            <p>Repository : @repo.Name - Number of Stargazers <span class="badge">@repo.Stargazers_Count</span></p>
+        }
+    </div>
+}

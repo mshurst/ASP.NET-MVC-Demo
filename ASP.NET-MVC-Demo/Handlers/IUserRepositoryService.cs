@@ -7,9 +7,10 @@ using ASP.NET_MVC_Demo.Models;
 
 namespace ASP.NET_MVC_Demo.Handlers
 {
-    public interface IGetUserData
+    public interface IUserRepositoryService
     {
         Task<UserData> GetUserData(string username);
         Task<IEnumerable<UserRepo>> GetUserRepos(string username);
+        Task<CombinedUserData> GetTopReposByUser(string username, int reposCount);
     }
 }

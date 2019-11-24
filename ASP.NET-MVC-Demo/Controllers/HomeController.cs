@@ -5,6 +5,7 @@ using System.Security.Cryptography;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using ASP.NET_MVC_Demo.ErrorHandling;
 using ASP.NET_MVC_Demo.Handlers;
 using ASP.NET_MVC_Demo.Models;
 
@@ -12,9 +13,9 @@ namespace ASP.NET_MVC_Demo.Controllers
 {
     public class HomeController : Controller
     {
-        private IGetUserData getUserDataHandler;
+        private IUserRepositoryService getUserDataHandler;
 
-        public HomeController(IGetUserData userDataHandler)
+        public HomeController(IUserRepositoryService userDataHandler)
         {
             getUserDataHandler = userDataHandler;
         }
@@ -26,31 +27,25 @@ namespace ASP.NET_MVC_Demo.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Show(UserData user)
+        public async Task<ActionResult> Index(CombinedUserData user)
         {
             if (!ModelState.IsValid)
             {
                 return RedirectToRoute("Index");
             }
 
-            var githubUser = await getUserDataHandler.GetUserData(user.Login);
-
-            var repos = await getUserDataHandler.GetUserRepos(user.Login);
-
-            var topReposByStargazerCount = 
-                (from repo in repos
-                orderby repo.Stargazers_Count descending 
-                select repo).Take(5);
-
-            var combinedUserData = new CombinedUserData
+            try
             {
-                UserData = githubUser,
-                UserRepos = topReposByStargazerCount
-            };
+                var combinedUserData = await getUserDataHandler.GetTopReposByUser(user.UserData.Login, 5);
 
-            return View(combinedUserData);
+                return View(combinedUserData);
+            }
+            catch (UserNotFoundException ex)
+            {
+                ViewBag.Error = "User Not Found";
+
+                return View();
+            }
         }
-
-
     }
 }
