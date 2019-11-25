@@ -18,7 +18,7 @@
             </div>
         </div>
         <div class="form-group">
-            <div class="col-lg-offset-2 col-lg-10">
+            <div class=" col-lg-offset-2 col-lg-2">
                 <button type="submit" class="btn btn-success">Search</button>
             </div>
         </div>
@@ -27,16 +27,36 @@
 
 @if (Model != null)
 {
+    <h2 class="text-center">User Details - @Model.UserData.Login</h2>
     <div class="jumbotron">
-        <h2 class="text-center">User Details</h2>
-        <p>Username : @Model.UserData.Login</p>
-        <p>Location : @Model.UserData.Location</p>
-        <img src="@Model.UserData.Avatar_Url" class="githubavatar img-thumbnail"/>
-        <p>Number of Repositories <span class="badge ">@Model.UserData.Public_Repos</span></p>
-
+        <hr/>
+        <div class="row">
+            <div class="col-lg-4">
+                <img src="@Model.UserData.Avatar_Url" class="githubavatar img-thumbnail" />
+            </div>
+            <div class="col-lg-4">
+                Location : @Model.UserData.Location
+            </div>
+            <div class="col-lg-4">
+                Number of Repositories <span class="badge ">@Model.UserData.Public_Repos</span>
+            </div>
+        </div>
+        
+        <hr/>
+        <div class="row">
+            <h3 class="text-center">Top 5 repositories ordered by Stargazers Count:</h3>
+        </div>
+        <hr/>
         @foreach (var repo in Model.UserRepos)
         {
-            <p>Repository : @repo.Name - Number of Stargazers <span class="badge">@repo.Stargazers_Count</span></p>
+            <div class="row">
+                <div class="col-lg-8">
+                    @repo.Name - Number of Stargazers
+                </div>
+                <div class="col-lg-4">
+                    <span class="badge">@repo.Stargazers_Count</span>
+                </div>
+            </div>
         }
     </div>
 }
