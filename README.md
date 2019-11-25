@@ -4,10 +4,11 @@ A small application written in ASP.net MVC to showcase good practices
 
 Application is a single Controller application which demonstrated GET and POST requests
 
-## Index():
+## Index:
 
-Displays a simple form to the user with a single text box requesting a Username
+Displays a simple form to the user with a single text box requesting a Username. Once a username is provided the View updates to show the result of retrieving the data from Github
 
-## Show():
+## ASP.NET-MVC-Demo.Tests
 
-Calls the public Github API in order to retrieve data on user given in POST request. A small subsection of the JSON data returned is shown, including Username, Location, Avatar and the user's top 5 repos orderd by stargazer_count
+Contains Unit and Integration tests for the main project
+
