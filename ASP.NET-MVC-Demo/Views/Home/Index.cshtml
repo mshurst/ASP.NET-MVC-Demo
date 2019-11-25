@@ -44,7 +44,7 @@
         
         <hr/>
         <div class="row">
-            <h3 class="text-center">Top 5 repositories ordered by Stargazers Count:</h3>
+            <h3 class="text-center">Top @Model.UserRepos.Count() repositories ordered by Stargazers Count:</h3>
         </div>
         <hr/>
         @foreach (var repo in Model.UserRepos)
